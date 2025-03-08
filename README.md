@@ -43,3 +43,19 @@ Implementation:
       * Save Game: Save the player’s progress (e.g., inventory, stats, location).
       * Exit: Allow the player to exit the game.
 
+5. Check Inventory
+
+Inventory Management:
+Display a list of items the player has collected.
+Show stats for each item (e.g., weapon damage, armor defense).
+
+6. Update Player Stats
+
+Stats to Track:
+    - Health: Player’s current health.
+    - XP: Experience points earned from battles or exploration.
+
+7. Save and Exit
+   - Save Game: Save the player’s current state (e.g., inventory, stats, location).
+   - Exit Game: Allow the player to exit the game and return to the main menu.
+  
