@@ -24,12 +24,14 @@ class Planet:
         self. treasures = ["Plasma Shield", "Laser Sword", "Alien Blaster"]
     def explore(self, player):
         print(f"You have arrived on {self.name} (With a difficulty of: {self.difficulty})")
+        self.describe_planet()
         if chance_of_success > self.difficulty * 0.2:
             print("You have now concorded the PLANET!")
             found_item = random.choice(self.treasures)
             player.add_to_inventory(found_item)
         else:
             print("....This planet has to many extra turestials that you cannot defeat")
+    #maybe a def about the planet decription
 class Galaxy:
     def __init__(self):
         self.planets = [
@@ -41,4 +43,5 @@ class Galaxy:
         print("Planets among this galaxy:")
         for i, planet in enumerate(self.planets, 1):
             print(f"{i}. {planet.name} (Difficulty: {planet.difficulty})")
-                       
+#need save and load functions
+#use player_inventory.json for save and load                       
