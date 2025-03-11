@@ -44,4 +44,27 @@ class Galaxy:
         for i, planet in enumerate(self.planets, 1):
             print(f"{i}. {planet.name} (Difficulty: {planet.difficulty})")
 #need save and load functions
-#use player_inventory.json for save and load                       
+#use player_inventory.json for save and load
+def main():
+    print("Welcome to galaxy explore!")
+    while true:
+        print("\n--- Main Menu ---")
+        print("1. New Game")
+        print("2. Load Game")
+        print("3. Exit")
+        choice = input("Choose an option: ")
+        if choice == "1":
+            player_name = input("\nEnter your name, explorer: ")
+            player = Player(player_name)
+            galaxy = Galaxy()
+            play_game(player, galaxy)
+        elif choice == "2":
+            player = load_game()
+            if player:
+                galaxy = Galaxy()
+                play_game(player, galaxy)
+        elif choice == "3":
+            print("\nSee you next time explorer! Safe travels!...watch for the space poop....")
+        else:
+            print("\nInvalid option. Select again.")
+                        
