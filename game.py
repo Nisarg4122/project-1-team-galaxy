@@ -1,4 +1,5 @@
 import random
+import json
 
 class Player:
     def __init__(self, name, inventory = None):
@@ -45,6 +46,37 @@ class Galaxy:
             print(f"{i}. {planet.name} (Difficulty: {planet.difficulty})")
 #need save and load functions
 #use player_inventory.json for save and load
+def load_inventory():
+    try:
+        with open('player_inventory.json', 'r') as file:
+            inventory = json.load(file)
+        return inventory
+    except FileNotFoundError:
+        print("Inventory file not found! Creating a new inventory.")
+        return {"items": []}
+
+# Function to save inventory data to JSON file
+def save_inventory(inventory):
+    with open('player_inventory.json', 'w') as file:
+        json.dump(inventory, file)
+    print("Inventory saved.")
+
+# Function to load inventory data from JSON file
+def load_inventory():
+    try:
+        with open('player_inventory.json', 'r') as file:
+            inventory = json.load(file)
+        return inventory
+    except FileNotFoundError:
+        print("Inventory file not found! Creating a new inventory.")
+        return {"items": []}
+
+# Function to save inventory data to JSON file
+def save_inventory(inventory):
+    with open('player_inventory.json', 'w') as file:
+        json.dump(inventory, file)
+    print("Inventory saved.")
+
 def main():
     print("Welcome to galaxy explore!")
     while true:
