@@ -2,10 +2,29 @@ import random
 import json
 
 class Player:
-    def __init__(self, name, inventory = None):
+    def __init__(self, name, inventory = None, health=100, level=1):
         self.name = name
-        self.health = 100
-        self.inventory = inventory if inventory else[]
+        self.health = health
+        self.level = level
+        self.inventory = inventory if inventory else []
+
+    def take_damage(self, amount):
+        self.health -= amount
+        if self.health < 0:
+            self.health = 0
+        print(f"Wow watch out... you just took {amount} damage! Your health us now {self.health}.")
+    
+    def heal(self, amount):
+        self.health += amount
+        if self.health > 100:
+            self.health = 100
+        print(f"Nice! You healed {amount}! Your health is now {self.health}.")
+
+    def level_up(self):
+        self.level += 1
+        print(f"Oooooohh Yeah!, {self.name} just reached level {self.level}.")
+
+
     def show_inventory(self):
         if self.inventory:
             print(f"\n{self.name}'s Inventory:")
@@ -22,10 +41,13 @@ class Planet:
     def __init__(self, name, difficulty):
         self.name = name
         self.difficulty = difficulty
-        self. treasures = ["Plasma Shield", "Laser Sword", "Alien Blaster"]
+        self.treasures = ["Plasma Shield", "Laser Sword", "Alien Blaster"]
+    def describe_planet(self):
+        print(f"{self.name} is a mysterious planet with a difficulty of {self.difficulty}.")
     def explore(self, player):
         print(f"You have arrived on {self.name} (With a difficulty of: {self.difficulty})")
         self.describe_planet()
+        chance_of_success = random.random()
         if chance_of_success > self.difficulty * 0.2:
             print("You have now concorded the PLANET!")
             found_item = random.choice(self.treasures)
@@ -46,22 +68,6 @@ class Galaxy:
             print(f"{i}. {planet.name} (Difficulty: {planet.difficulty})")
 #need save and load functions
 #use player_inventory.json for save and load
-def load_inventory():
-    try:
-        with open('player_inventory.json', 'r') as file:
-            inventory = json.load(file)
-        return inventory
-    except FileNotFoundError:
-        print("Inventory file not found! Creating a new inventory.")
-        return {"items": []}
-
-# Function to save inventory data to JSON file
-def save_inventory(inventory):
-    with open('player_inventory.json', 'w') as file:
-        json.dump(inventory, file)
-    print("Inventory saved.")
-
-# Function to load inventory data from JSON file
 def load_inventory():
     try:
         with open('player_inventory.json', 'r') as file:
@@ -130,4 +136,8 @@ def main():
             print("\nSee you next time explorer! Safe travels!...watch for the space poop....")
         else:
             print("\nInvalid option. Select again.")
+
+if __name__ == "__main__":
+    main()
+
                         
